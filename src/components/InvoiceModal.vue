@@ -51,7 +51,7 @@
       <div class="bill-to flex flex-column">
         <h4>Bill To</h4>
         <div class="input flex flex-column">
-          <div>select name</div>
+          <div>select</div>
           <select v-model="selected" class="text-white">
             <option disabled value="">選択して下さい</option>
             <option v-for="option in options" v-bind:value="option.name" v-bind:key="option.id">
