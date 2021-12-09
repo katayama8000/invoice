@@ -484,6 +484,7 @@ export default {
       this.clientCity = clientInfo.data().clientCity;
       this.clientZipCode = clientInfo.data().clientZipCode;
       this.clientCountry = clientInfo.data().clientCountry;
+      console.log("変更")
     },
   },
 };
