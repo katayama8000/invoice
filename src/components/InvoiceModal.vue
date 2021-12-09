@@ -51,14 +51,17 @@
       <div class="bill-to flex flex-column">
         <h4>Bill To</h4>
         <div class="input flex flex-column">
-          <div>select</div>
+          <div>select clients</div>
           <select v-model="selected" class="text-white">
-            <option disabled value="">選択して下さい</option>
-            <option v-for="option in options" v-bind:value="option.name" v-bind:key="option.id">
-                {{ option.name }}
+            <option
+              v-for="option in options"
+              :value="option.id"
+              :key="option.id"
+            >
+              {{ option.name }}{{ option.id }}
             </option>
-        </select>
-        <p style="color:white;">{{ selected }}</p>
+          </select>
+          <p style="color: white">{{ selected }}</p>
           <label for="clientName">Client's Name</label>
           <input required type="text" id="clientName" v-model="clientName" />
         </div>
@@ -217,6 +220,7 @@ import { uid } from "uid";
 import { collection, addDoc } from "firebase/firestore";
 import { doc, updateDoc } from "firebase/firestore";
 import { getDoc } from "firebase/firestore";
+import { getDocs } from "firebase/firestore";
 //import { getAuth } from "firebase/auth";
 export default {
   name: "invoiceModal",
@@ -247,11 +251,7 @@ export default {
       invoiceTotal: 0,
       //sample
       selected: "",
-            options: [
-                    { id: 1, name: '夏目漱石' },
-                    { id: 2, name: '太宰治' },
-                    { id: 3, name: '村上春樹' }
-                ]
+      options: [],
     };
   },
   components: {
@@ -306,6 +306,15 @@ export default {
       this.invoiceItemList = currentInvoice.invoiceItemList;
       this.invoiceTotal = currentInvoice.invoiceTotal;
     }
+
+    const invoiceName = await getDocs(collection(db, "invoice"));
+    console.log(invoiceName);
+    //let count = 0
+    invoiceName.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data().clientName);
+      this.options.push({ id: doc.id, name: doc.data().clientName });
+      //count++
+    });
   },
   methods: {
     ...mapMutations(["TOGGLE_INVOICE", "TOGGLE_MODAL", "TOGGLE_EDIT_INVOICE"]),
@@ -465,7 +474,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .invoice-wrap {
   position: fixed;
   top: 0;
