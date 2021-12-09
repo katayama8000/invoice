@@ -57,11 +57,12 @@
               v-for="option in options"
               :value="option.id"
               :key="option.id"
+              @click="selectedName"
             >
-              {{ option.name }}{{ option.id }}
+              {{ option.name }}
             </option>
           </select>
-          <p style="color: white">{{ selected }}</p>
+          <p style="color: white">{{ selectedClient }}</p>
           <label for="clientName">Client's Name</label>
           <input required type="text" id="clientName" v-model="clientName" />
         </div>
@@ -458,6 +459,10 @@ export default {
   },
   computed: {
     ...mapState(["editInvoice", "currentInvoiceArray"]),
+
+    selectedClient: function () {
+      return this.selected;
+    },
   },
   watch: {
     paymentTerms() {
@@ -468,6 +473,17 @@ export default {
       this.paymentDueDate = new Date(
         this.paymentDueDateUnix
       ).toLocaleDateString("en-us", this.dateOptions);
+    },
+
+    async selectedClient(id) {
+      const Ref = doc(db, "invoice", id);
+      const clientInfo = await getDoc(Ref);
+      this.clientName = clientInfo.data().clientName;
+      this.clientEmail = clientInfo.data().clientEmail;
+      this.clientStreetAddress = clientInfo.data().clientStreetAddress;
+      this.clientCity = clientInfo.data().clientCity;
+      this.clientZipCode = clientInfo.data().clientZipCode;
+      this.clientCountry = clientInfo.data().clientCountry;
     },
   },
 };

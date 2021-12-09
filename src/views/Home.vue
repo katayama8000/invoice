@@ -65,7 +65,6 @@ export default {
     return {
       filterMenu: null,
       filteredInvoice: null,
-
       filteredData_array: [],
     };
   },
