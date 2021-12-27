@@ -1,6 +1,6 @@
 //請求書クリック後の詳細
 <template>
-  <div v-if="currentInvoice" class="invoice-view container">
+  <div v-if="currentInvoice" class="invoice-view container " >
     <router-link class="nav-link flex" :to="{ name: 'Home' }">
       <img src="@/assets/icon-arrow-left.svg" alt="" /> Go Back
     </router-link>

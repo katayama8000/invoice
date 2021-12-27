@@ -51,18 +51,19 @@
       <div class="bill-to flex flex-column">
         <h4>Bill To</h4>
         <div class="input flex flex-column">
-          <div>select clients</div>
-          <select v-model="selected" class="text-white">
+          <label for="selectedClients">select clients</label>
+          <select v-model="selected" id="selectedClients" class="text-white">
             <option
               v-for="option in options"
               :value="option.id"
               :key="option.id"
-              @click="selectedName"
             >
               {{ option.name }}
             </option>
           </select>
           <p style="color: white">{{ selectedClient }}</p>
+        </div>
+        <div class="input flex flex-column">
           <label for="clientName">Client's Name</label>
           <input required type="text" id="clientName" v-model="clientName" />
         </div>
