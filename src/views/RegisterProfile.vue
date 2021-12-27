@@ -1,9 +1,12 @@
 <template>
-  <div class="text-white">
-    <div class="bill-from flex flex-column">
-      <h4>Bill From</h4>
-      <div class="input flex flex-column">
-        <label for="billerStreetAddress">Street Address</label>
+  <div class="text-white mx-auto">
+    <div class="bill-from mt-36">
+      <router-link class="nav-link flex text-white mb-2" :to="{ name: 'Home' }">
+      <img src="@/assets/icon-arrow-left.svg" alt="" /> Go Back
+    </router-link>
+    <form @submit.prevent="submitForm" >
+      <div class="input">
+        <label for="billerStreetAddress">Street Address</label><br />
         <input
           required
           type="text"
@@ -13,9 +16,8 @@
         />
         <br /><br />
       </div>
-      <div class="location-details flex">
-        <div class="input flex flex-column m-3">
-          <label for="billerCity">City</label>
+        <div class="input">
+          <label for="billerCity">City</label><br />
           <input
             required
             type="text"
@@ -24,9 +26,9 @@
             class="text-black"
           />
         </div>
-        <br /><br />
-        <div class="input flex flex-column m-3">
-          <label for="billerZipCode">Zip Code</label>
+        <br />
+        <div class="input">
+          <label for="billerZipCode">Zip Code</label><br />
           <input
             required
             type="text"
@@ -36,8 +38,8 @@
           />
           <br /><br />
         </div>
-        <div class="input flex flex-column m-3">
-          <label for="billerCountry">Country</label>
+        <div class="input">
+          <label for="billerCountry">Country</label><br />
           <input
             required
             type="text"
@@ -47,8 +49,24 @@
           />
           <br /><br />
         </div>
-        <button @click="updatePersonalInfo()">to firebase</button>
-      </div>
+        <div class="ml-12">
+          <button
+          type="submit"
+            class="
+              bg-purple-500
+              hover:bg-purple-700
+              text-white
+              font-bold
+              py-2
+              px-4
+              rounded
+            "
+          >
+            update
+          </button>
+        </div>
+        </form>
+
     </div>
   </div>
 </template>
@@ -69,13 +87,12 @@ export default {
   },
 
   methods: {
-    async updatePersonalInfo() {
+    async submitForm() {
       const auth = getAuth();
       const user = auth.currentUser;
       console.log(user);
       //const uid = user.uid
       const uid = "oqT9vFPWRDQhq4cHwmyKNkODQzp2";
-      console.log(uid);
 
       await setDoc(doc(db, "users", uid), {
         billerStreetAddress: this.billerStreetAddress,
@@ -87,3 +104,16 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.nav-link {
+  align-items: center;
+  color: #fff;
+  font-size: 12px;
+  img {
+    margin-right: 10px;
+    width: 7px;
+    height: 10px;
+  }
+}
+</style>

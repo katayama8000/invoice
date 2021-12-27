@@ -4,7 +4,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { doc, deleteDoc } from "firebase/firestore";
 import { updateDoc } from "firebase/firestore";
 import router from "../router/index"
-import {getAuth}  from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
@@ -17,11 +17,11 @@ export default createStore({
     currentInvoiceArray: null,
     editInvoice: null,
     idToken: null,
-    detailText:null
+    detailText: null
   },
 
-  getters:{
-    idToken:state => state.idToken
+  getters: {
+    idToken: state => state.idToken
   },
 
   mutations: {
@@ -75,7 +75,7 @@ export default createStore({
     //   state.detailText = detailText
     // }
   },
-  
+
   actions: {
     async GET_INVOICES({ commit, state }) {
       const results = await getDocs(collection(db, "invoice"));
@@ -146,7 +146,7 @@ export default createStore({
       commit("UPDATE_STATUS_TO_PENDING", docId);
     },
 
-    async login({ commit }, authData) {
+    async signin({ commit }, authData) {
 
       const auth = getAuth();
       signInWithEmailAndPassword(auth, authData.email, authData.password)
@@ -154,38 +154,38 @@ export default createStore({
           // Signed in
           const user = userCredential.user;
           alert("ログイン成功");
-          commit("upDataIdToken",user.uid)
+          commit("upDataIdToken", user.uid)
           router.push("/")
         })
         .catch((error) => {
           const errorCode = error.code;
           alert(errorCode);
         })
-      },
+    },
 
 
-    register({ commit }, authData) {
+    signup({ commit }, authData) {
       const auth = getAuth();
       createUserWithEmailAndPassword(auth, authData.email, authData.password)
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
           alert("新規登録完了", user);
-          commit("upDataIdToken",user.uid)
+          commit("upDataIdToken", user.uid)
 
           router.push("/")
 
         })
         .catch((error) => {
           const errorCode = error.code;
-          alert("エラー\n新しいメールアドレスorパスワードを\n入力してください",errorCode);
+          alert("エラー\n新しいメールアドレスorパスワードを\n入力してください", errorCode);
         })
-      },
+    },
 
-      logout({commit}){
-        commit("upDataIdToken",null)
-        //localStorage.removeItem
-        router.replace("/login")
-      }
+    logout({ commit }) {
+      commit("upDataIdToken", null)
+      //localStorage.removeItem
+      router.replace("/login")
+    }
   }
 });

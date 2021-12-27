@@ -51,14 +51,19 @@
       <div class="bill-to flex flex-column">
         <h4>Bill To</h4>
         <div class="input flex flex-column">
-          <div>select name</div>
-          <select v-model="selected" class="text-white">
-            <option disabled value="">選択して下さい</option>
-            <option v-for="option in options" v-bind:value="option.name" v-bind:key="option.id">
-                {{ option.name }}
+          <label for="selectedClients">select clients</label>
+          <select v-model="selected" id="selectedClients" class="text-white">
+            <option
+              v-for="option in options"
+              :value="option.id"
+              :key="option.id"
+            >
+              {{ option.name }}
             </option>
-        </select>
-        <p style="color:white;">{{ selected }}</p>
+          </select>
+          <p style="color: white">{{ selectedClient }}</p>
+        </div>
+        <div class="input flex flex-column">
           <label for="clientName">Client's Name</label>
           <input required type="text" id="clientName" v-model="clientName" />
         </div>
@@ -125,7 +130,7 @@
         </div>
         <div class="input flex flex-column">
           <label for="paymentTerms">Payment Terms</label>
-          <select required type="text" id="paymentTerms" v-model="paymentTerms">
+          <select required id="paymentTerms" v-model="paymentTerms">
             <option value="30">Net 30 Days</option>
             <option value="60">Net 60 Days</option>
           </select>
@@ -217,6 +222,7 @@ import { uid } from "uid";
 import { collection, addDoc } from "firebase/firestore";
 import { doc, updateDoc } from "firebase/firestore";
 import { getDoc } from "firebase/firestore";
+import { getDocs } from "firebase/firestore";
 //import { getAuth } from "firebase/auth";
 export default {
   name: "invoiceModal",
@@ -247,11 +253,7 @@ export default {
       invoiceTotal: 0,
       //sample
       selected: "",
-            options: [
-                    { id: 1, name: '夏目漱石' },
-                    { id: 2, name: '太宰治' },
-                    { id: 3, name: '村上春樹' }
-                ]
+      options: [],
     };
   },
   components: {
@@ -306,6 +308,15 @@ export default {
       this.invoiceItemList = currentInvoice.invoiceItemList;
       this.invoiceTotal = currentInvoice.invoiceTotal;
     }
+
+    const invoiceName = await getDocs(collection(db, "invoice"));
+    console.log(invoiceName);
+    //let count = 0
+    invoiceName.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data().clientName);
+      this.options.push({ id: doc.id, name: doc.data().clientName });
+      //count++
+    });
   },
   methods: {
     ...mapMutations(["TOGGLE_INVOICE", "TOGGLE_MODAL", "TOGGLE_EDIT_INVOICE"]),
@@ -449,6 +460,10 @@ export default {
   },
   computed: {
     ...mapState(["editInvoice", "currentInvoiceArray"]),
+
+    selectedClient: function () {
+      return this.selected;
+    },
   },
   watch: {
     paymentTerms() {
@@ -460,12 +475,22 @@ export default {
         this.paymentDueDateUnix
       ).toLocaleDateString("en-us", this.dateOptions);
     },
+
+    async selectedClient(id) {
+      const Ref = doc(db, "invoice", id);
+      const clientInfo = await getDoc(Ref);
+      this.clientName = clientInfo.data().clientName;
+      this.clientEmail = clientInfo.data().clientEmail;
+      this.clientStreetAddress = clientInfo.data().clientStreetAddress;
+      this.clientCity = clientInfo.data().clientCity;
+      this.clientZipCode = clientInfo.data().clientZipCode;
+      this.clientCountry = clientInfo.data().clientCountry;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-
 .invoice-wrap {
   position: fixed;
   top: 0;

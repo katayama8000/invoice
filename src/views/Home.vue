@@ -28,11 +28,10 @@
           </div>
           <span>New Invoice</span>
         </div>
-
-
+        <!-- ログイン、新規登録、個人情報 -->
         <router-link to="/signup"><div class="bg-purple-500 mx-2 py-3 px-5 rounded-3xl text-xs">sign-up</div></router-link>
         <router-link to="/signin"><div class="bg-purple-500 mx-2 py-3 px-5 rounded-3xl text-xs">sign-in</div></router-link>
-        <router-link to="/registerprofile"><div class="bg-purple-500 mx-2 py-3 px-5 rounded-3xl text-xs">登録</div></router-link>
+        <router-link to="/registerprofile"><div class="bg-purple-500 mx-2 py-3 px-5 rounded-3xl text-xs">個人情報</div></router-link>
       </div>
     </div>
     <!-- Invoices一覧表示 -->
@@ -65,7 +64,6 @@ export default {
     return {
       filterMenu: null,
       filteredInvoice: null,
-
       filteredData_array: [],
     };
   },

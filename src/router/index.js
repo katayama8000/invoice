@@ -24,12 +24,12 @@ const routes = [
   },
   {
     path: '/signup',
-    name: 'Signup',
+    name: 'signup',
     component: Signup
   },
   {
     path: '/signin',
-    name: 'Signin',
+    name: 'signin',
     component: Signin
   },
   {
