@@ -1,4 +1,3 @@
-clickされた請求書の詳細を表示
 <template>
   <router-link
     class="invoice flex"
