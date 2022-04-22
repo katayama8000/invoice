@@ -70,7 +70,6 @@ export default createStore({
     upDataIdToken(state, idToken) {
       state.idToken = idToken
     },
-
   },
 
   actions: {
@@ -124,7 +123,6 @@ export default createStore({
     },
 
     async UPDATE_STATUS_TO_PAID({ commit }, docId) {
-      //console.log(docId)
       const getInvoice = doc(db, "invoice", docId);
       await updateDoc(getInvoice, {
         invoicePaid: true,
@@ -167,7 +165,6 @@ export default createStore({
           const user = userCredential.user;
           alert("新規登録完了", user);
           commit("upDataIdToken", user.uid)
-
           router.push("/")
 
         })
