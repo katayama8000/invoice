@@ -260,23 +260,15 @@ export default {
     Loading,
   },
   async created() {
-    // get current date for invoice date field
     if (!this.editInvoice) {
       this.invoiceDateUnix = Date.now();
       this.invoiceDate = new Date(this.invoiceDateUnix).toLocaleDateString(
         "en-us",
         this.dateOptions
       );
-      // const auth = getAuth();
-      // const user = auth.currentUser;
-      // const uid = user.uid;
-      // console.log(uid);
-      // console.log("oqT9vFPWRDQhq4cHwmyKNkODQzp2");
 
       const Personalinfo = doc(db, "users", "oqT9vFPWRDQhq4cHwmyKNkODQzp2");
       const info = await getDoc(Personalinfo);
-      console.log("info", info);
-      console.log("info", info.data());
 
       this.billerStreetAddress = info.data().billerStreetAddress;
       this.billerCity = info.data().billerCity;
@@ -311,11 +303,9 @@ export default {
 
     const invoiceName = await getDocs(collection(db, "invoice"));
     console.log(invoiceName);
-    //let count = 0
     invoiceName.forEach((doc) => {
       console.log(doc.id, " => ", doc.data().clientName);
       this.options.push({ id: doc.id, name: doc.data().clientName });
-      //count++
     });
   },
   methods: {
