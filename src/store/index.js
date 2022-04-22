@@ -71,9 +71,6 @@ export default createStore({
       state.idToken = idToken
     },
 
-    // upDataDetailText(state, detailText) {
-    //   state.detailText = detailText
-    // }
   },
 
   actions: {
@@ -151,7 +148,6 @@ export default createStore({
       const auth = getAuth();
       signInWithEmailAndPassword(auth, authData.email, authData.password)
         .then((userCredential) => {
-          // Signed in
           const user = userCredential.user;
           alert("ログイン成功");
           commit("upDataIdToken", user.uid)
@@ -168,7 +164,6 @@ export default createStore({
       const auth = getAuth();
       createUserWithEmailAndPassword(auth, authData.email, authData.password)
         .then((userCredential) => {
-          // Signed in
           const user = userCredential.user;
           alert("新規登録完了", user);
           commit("upDataIdToken", user.uid)
@@ -184,7 +179,6 @@ export default createStore({
 
     logout({ commit }) {
       commit("upDataIdToken", null)
-      //localStorage.removeItem
       router.replace("/login")
     }
   }
