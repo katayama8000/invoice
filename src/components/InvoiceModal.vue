@@ -223,7 +223,6 @@ import { collection, addDoc } from "firebase/firestore";
 import { doc, updateDoc } from "firebase/firestore";
 import { getDoc } from "firebase/firestore";
 import { getDocs } from "firebase/firestore";
-//import { getAuth } from "firebase/auth";
 export default {
   name: "invoiceModal",
   data() {
@@ -302,9 +301,7 @@ export default {
     }
 
     const invoiceName = await getDocs(collection(db, "invoice"));
-    console.log(invoiceName);
     invoiceName.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data().clientName);
       this.options.push({ id: doc.id, name: doc.data().clientName });
     });
   },
