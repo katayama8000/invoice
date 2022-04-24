@@ -61,7 +61,6 @@
               {{ option.name }}
             </option>
           </select>
-          <p style="color: white">{{ selectedClient }}</p>
         </div>
         <div class="input flex flex-column">
           <label for="clientName">Client's Name</label>
@@ -266,13 +265,6 @@ export default {
         this.dateOptions
       );
 
-      const Personalinfo = doc(db, "users", "oqT9vFPWRDQhq4cHwmyKNkODQzp2");
-      const info = await getDoc(Personalinfo);
-
-      this.billerStreetAddress = info.data().billerStreetAddress;
-      this.billerCity = info.data().billerCity;
-      this.billerZipCode = info.data().billerZipCode;
-      this.billerCountry = info.data().billerCountry;
     }
 
     if (this.editInvoice) {
