@@ -43,7 +43,7 @@
       />
     </div>
     <div v-else class="empty flex flex-column">
-      <!-- <img src="@/assets/illustration-empty.svg" alt="" /> -->
+      <img src="@/assets/illustration-empty.svg" alt="" />
       <h3>There is nothing here</h3>
       <p>
         Create a new invoice by clicking the New Invoice button and get started
@@ -94,7 +94,6 @@ export default {
     },
 
     filteredInvoices(e) {
-      console.log(e);
       if (e.target.innerText === "Clear Filter") {
         this.filteredInvoice = null;
         return;
