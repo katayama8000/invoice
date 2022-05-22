@@ -1,7 +1,7 @@
 <template>
   <div class="mt-36 m-auto">
     <router-link class="nav-link flex text-white mb-3" :to="{ name: 'Home' }">
-      <img src="@/assets/icon-arrow-left.svg" alt="" />Go Back
+      <img src="@/assets/icon-arrow-left.svg" alt="" />Go Back !!!
     </router-link>
     <div class="flex justify-center text-white">
       <div class="text-black">

@@ -1,11 +1,11 @@
 <template>
-  <Form></Form>
+  <Form />
 </template>
 
 <script>
-import Form from '../components/Form.vue'
+import Form from "../components/Form.vue";
 export default {
-  name:"Signup",
-  components:{ Form }
-}
+  name: "Signup",
+  components: { Form },
+};
 </script>
