@@ -1,6 +1,6 @@
 # invoice
 
-ToDo</br>
-・firebaseでのデプロイこけているので直す</br>
-・TypeScript導入</br>
-・Nuxt.js使ってみたい
+### Should Do
+- firebaseでのデプロイこけているので直す
+- TypeScript導入
+- Nuxt.js使ってみたい
