@@ -9,45 +9,35 @@
       <div class="right flex">
         <div @click="toggleFilterMenu" class="filter flex">
           <span
-            >Filter by status
-            <span v-if="filteredInvoice">: {{ filteredInvoice }}</span></span
+            >Filter by status <span v-if="filteredInvoice">: {{ filteredInvoice }}</span></span
           >
           <img src="@/assets/icon-arrow-down.svg" alt="" />
           <ul v-show="filterMenu" class="filter-menu">
-            <!-- 請求書にfilterをかける -->
             <li @click="filteredInvoices">Draft</li>
             <li @click="filteredInvoices">Pending</li>
             <li @click="filteredInvoices">Paid</li>
             <li @click="filteredInvoices">Clear Filter</li>
           </ul>
         </div>
-        <!-- 新しいinvoiceを作成左から請求書出てくる -->
-        <div @click="newInvoice" class="button flex bg-purple-500">
+        <div @click="newInvoice" class="button flex">
           <div class="inner-button flex">
             <img src="@/assets/icon-plus.svg" alt="" />
           </div>
           <span>New Invoice</span>
         </div>
-        <!-- ログイン、新規登録、個人情報 -->
-        <router-link to="/signup"><div class="bg-purple-500 mx-2 py-3 px-5 rounded-3xl text-xs">sign-up</div></router-link>
-        <router-link to="/signin"><div class="bg-purple-500 mx-2 py-3 px-5 rounded-3xl text-xs">sign-in</div></router-link>
-        <router-link to="/registerprofile"><div class="bg-purple-500 mx-2 py-3 px-5 rounded-3xl text-xs">個人情報</div></router-link>
+        <router-link to="/signup">sign-up</router-link>
+        <router-link to="/signin">sign-in</router-link>
+        <router-link to="/registerprofile">info</router-link>
       </div>
     </div>
-    <!-- Invoices一覧表示 -->
+    <!-- Invoices -->
     <div v-if="invoiceData.length > 0">
-      <Invoice
-        v-for="(invoice, index) in filteredData"
-        :invoice="invoice"
-        :key="index"
-      />
+      <Invoice v-for="(invoice, index) in filteredData" :invoice="invoice" :key="index" />
     </div>
     <div v-else class="empty flex flex-column">
       <img src="@/assets/illustration-empty.svg" alt="" />
       <h3>There is nothing here</h3>
-      <p>
-        Create a new invoice by clicking the New Invoice button and get started
-      </p>
+      <p>Create a new invoice by clicking the New Invoice button and get started</p>
     </div>
   </div>
 </template>
