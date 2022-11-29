@@ -18,7 +18,6 @@
       <p>To use this app, please use a computer or Tablet</p>
     </div>
     <!----------------------- スマホ用は表示できない --------------------------------->
-    <!-- </div> -->
   </div>
 </template>
 
