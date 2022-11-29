@@ -8,23 +8,23 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore"
 
 //Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: process.env.VUE_APP_APIKEY,
-  authDomain: process.env.VUE_APP_AUTHDOMAIN,
-  projectId: process.env.VUE_APP_PROJECTID,
-  storageBucket: process.env.VUE_APP_STORAGEBUCKET,
-  messagingSenderId: process.env.VUE_APP_MESSAGINGSENDERID,
-  appId: process.env.VUE_APP_APPID,
-};
-
 // const firebaseConfig = {
-//   apiKey: "AIzaSyCu5tD74o7AKsUsLDmLqptBELf20-IkMak",
-//   authDomain: "invoice-app-d6e30.firebaseapp.com",
-//   projectId: "invoice-app-d6e30",
-//   storageBucket: "invoice-app-d6e30.appspot.com",
-//   messagingSenderId: "845912529845",
-//   appId: "1:845912529845:web:03cd61d0225333708997fc"
+//   apiKey: process.env.VUE_APP_APIKEY,
+//   authDomain: process.env.VUE_APP_AUTHDOMAIN,
+//   projectId: process.env.VUE_APP_PROJECTID,
+//   storageBucket: process.env.VUE_APP_STORAGEBUCKET,
+//   messagingSenderId: process.env.VUE_APP_MESSAGINGSENDERID,
+//   appId: process.env.VUE_APP_APPID,
 // };
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCu5tD74o7AKsUsLDmLqptBELf20-IkMak",
+  authDomain: "invoice-app-d6e30.firebaseapp.com",
+  projectId: "invoice-app-d6e30",
+  storageBucket: "invoice-app-d6e30.appspot.com",
+  messagingSenderId: "845912529845",
+  appId: "1:845912529845:web:03cd61d0225333708997fc"
+};
 
 // Initialize Firebase
 initializeApp(firebaseConfig);

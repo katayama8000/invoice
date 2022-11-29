@@ -1,23 +1,23 @@
 <template>
   <div>
-      <div v-if="!mobile" class="app flex flex-column">
-        <Navigation />
-        <div class="app-content flex flex-column">
+    <div v-if="!mobile" class="app flex flex-column">
+      <Navigation />
+      <div class="app-content flex flex-column">
+        <!-- vuexのstateをcomputedで見ている -->
+        <Modal v-if="modalActive" />
+        <transition name="invoice">
           <!-- vuexのstateをcomputedで見ている -->
-          <Modal v-if="modalActive" />
-          <transition name="invoice">
-            <!-- vuexのstateをcomputedで見ている -->
-            <InvoiceModal v-if="invoiceModal" />
-          </transition>
-          <router-view />
-        </div>
+          <InvoiceModal v-if="invoiceModal" />
+        </transition>
+        <router-view />
       </div>
-      <!----------------------- スマホ用は表示できない --------------------------------->
-      <div v-else class="mobile-message flex flex-column">
-        <h2>Sorry, this app is not supported on Mobile Devices</h2>
-        <p>To use this app, please use a computer or Tablet</p>
-      </div>
-      <!----------------------- スマホ用は表示できない --------------------------------->
+    </div>
+    <!----------------------- スマホ用は表示できない --------------------------------->
+    <div v-else class="mobile-message flex flex-column">
+      <h2>Sorry, this app is not supported on Mobile Devices</h2>
+      <p>To use this app, please use a computer or Tablet</p>
+    </div>
+    <!----------------------- スマホ用は表示できない --------------------------------->
     <!-- </div> -->
   </div>
 </template>
@@ -154,7 +154,7 @@ button,
 .container {
   width: 100%;
   padding: 40px 10px;
-  max-width: 850px;
+  max-width: 1320px;
   margin: 0 auto;
 
   @media (min-width: 900px) {

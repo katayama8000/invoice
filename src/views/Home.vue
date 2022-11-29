@@ -9,7 +9,8 @@
       <div class="right flex">
         <div @click="toggleFilterMenu" class="filter flex">
           <span
-            >Filter by status <span v-if="filteredInvoice">: {{ filteredInvoice }}</span></span
+            >Filter by status
+            <span v-if="filteredInvoice">: {{ filteredInvoice }}</span></span
           >
           <img src="@/assets/icon-arrow-down.svg" alt="" />
           <ul v-show="filterMenu" class="filter-menu">
@@ -32,16 +33,21 @@
     </div>
     <!-- Invoices -->
     <div v-if="invoiceData.length > 0">
-      <Invoice v-for="(invoice, index) in filteredData" :invoice="invoice" :key="index" />
+      <Invoice
+        v-for="(invoice, index) in filteredData"
+        :invoice="invoice"
+        :key="index"
+      />
     </div>
     <div v-else class="empty flex flex-column">
       <img src="@/assets/illustration-empty.svg" alt="" />
       <h3>There is nothing here</h3>
-      <p>Create a new invoice by clicking the New Invoice button and get started</p>
+      <p>
+        Create a new invoice by clicking the New Invoice button and get started
+      </p>
     </div>
   </div>
 </template>
-
 
 <script>
 import Invoice from "../components/Invoice";
@@ -69,7 +75,6 @@ export default {
     ...mapMutations(["TOGGLE_INVOICE"]),
     ...mapActions(["GET_INVOICES"]),
 
-
     getDataFromFirebase() {
       this.GET_INVOICES();
     },
@@ -95,7 +100,7 @@ export default {
   computed: {
     ...mapState(["invoiceData"]),
 
-//state or this.filteredInvoiceの変化などで作動。配列を作り直して表示。
+    //state or this.filteredInvoiceの変化などで作動。配列を作り直して表示。
     filteredData() {
       let data_array = this.invoiceData.filter((invoice) => {
         if (this.filteredInvoice === "Draft") {
@@ -218,4 +223,3 @@ export default {
   }
 }
 </style>
-
