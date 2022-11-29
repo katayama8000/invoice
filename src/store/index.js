@@ -41,6 +41,7 @@ export default createStore({
       state.currentInvoiceArray = state.invoiceData.filter((invoice) => {
         return invoice.invoiceId === payload;
       });
+      console.log(state.currentInvoiceArray[0], "current invoice array", payload);
     },
     TOGGLE_EDIT_INVOICE(state) {
       state.editInvoice = !state.editInvoice;
