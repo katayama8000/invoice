@@ -15,5 +15,3 @@
 - node18以上は動かない
 
 ### deploy
-- netlify
-    - https://iridescent-eclair-6fc317.netlify.app/
