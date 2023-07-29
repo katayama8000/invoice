@@ -2,7 +2,7 @@
 
 ### Should Do
 
-- firebase でのデプロイ
+- firebase へのデプロイ
 - TypeScript 導入
 - パッケージの整理
 - Nuxt.js 使ってみたい
