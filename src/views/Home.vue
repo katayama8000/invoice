@@ -26,8 +26,8 @@
           </div>
           <span>New Invoice</span>
         </div>
-        <router-link to="/signup">sign-up</router-link>
-        <router-link to="/signin">sign-in</router-link>
+        <router-link to="/signup">sign-up</router-link> |
+        <router-link to="/signin">sign-in</router-link> |
         <router-link to="/registerprofile">info</router-link>
       </div>
     </div>
@@ -36,8 +36,7 @@
       <Invoice
         v-for="(invoice, index) in filteredData"
         :invoice="invoice"
-        :key="index"
-      />
+        :key="index" />
     </div>
     <div v-else class="empty flex flex-column">
       <img src="@/assets/illustration-empty.svg" alt="" />
@@ -50,11 +49,11 @@
 </template>
 
 <script>
-import Invoice from "../components/Invoice";
+import Invoice from '../components/Invoice';
 //vuexからとってくる
-import { mapMutations, mapState, mapActions } from "vuex";
+import { mapMutations, mapState, mapActions } from 'vuex';
 export default {
-  name: "Home",
+  name: 'Home',
 
   data() {
     return {
@@ -72,8 +71,8 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["TOGGLE_INVOICE"]),
-    ...mapActions(["GET_INVOICES"]),
+    ...mapMutations(['TOGGLE_INVOICE']),
+    ...mapActions(['GET_INVOICES']),
 
     getDataFromFirebase() {
       this.GET_INVOICES();
@@ -89,7 +88,7 @@ export default {
     },
 
     filteredInvoices(e) {
-      if (e.target.innerText === "Clear Filter") {
+      if (e.target.innerText === 'Clear Filter') {
         this.filteredInvoice = null;
         return;
       }
@@ -98,18 +97,18 @@ export default {
   },
 
   computed: {
-    ...mapState(["invoiceData"]),
+    ...mapState(['invoiceData']),
 
     //state or this.filteredInvoiceの変化などで作動。配列を作り直して表示。
     filteredData() {
       let data_array = this.invoiceData.filter((invoice) => {
-        if (this.filteredInvoice === "Draft") {
+        if (this.filteredInvoice === 'Draft') {
           return invoice.invoiceDraft === true;
         }
-        if (this.filteredInvoice === "Pending") {
+        if (this.filteredInvoice === 'Pending') {
           return invoice.invoicePending === true;
         }
-        if (this.filteredInvoice === "Paid") {
+        if (this.filteredInvoice === 'Paid') {
           return invoice.invoicePaid === true;
         }
         return invoice;
