@@ -6,6 +6,8 @@
 - TypeScript 導入
 - パッケージの整理
 - Nuxt.js 使ってみたい
+- vue-cli -> vite
+    - https://zenn.dev/kazuwombat/articles/9357f6b1ccca8c
 
 ### エラー回避
 
